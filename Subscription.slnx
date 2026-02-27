@@ -1,3 +1,4 @@
 <Solution>
   <Project Path="Subscription.Api/Subscription.Api.csproj" />
+  <Project Path="Subscription.Domain/Subscription.Domain.csproj" />
 </Solution>
