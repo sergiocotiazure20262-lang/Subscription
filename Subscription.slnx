@@ -1,4 +1,9 @@
 <Solution>
+  <Folder Name="/Itens de Solução/">
+    <File Path="docker-compose.yml" />
+  </Folder>
   <Project Path="Subscription.Api/Subscription.Api.csproj" />
   <Project Path="Subscription.Domain/Subscription.Domain.csproj" />
+  <Project Path="Subscription.Infra.Data/Subscription.Infra.Data.csproj" />
+  <Project Path="Subscription.Infra.Messages/Subscription.Infra.Messages.csproj" />
 </Solution>
