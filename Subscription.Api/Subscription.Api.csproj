@@ -12,16 +12,14 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+    <PackageReference Include="Scalar.AspNetCore" Version="2.13.1" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="10.1.4" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Subscription.Domain\Subscription.Domain.csproj" />
     <ProjectReference Include="..\Subscription.Infra.Data\Subscription.Infra.Data.csproj" />
     <ProjectReference Include="..\Subscription.Infra.Messages\Subscription.Infra.Messages.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Controllers\" />
   </ItemGroup>
 
 </Project>
