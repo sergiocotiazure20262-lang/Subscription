@@ -1,5 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Subscription.Domain.Interfaces.Repositories;
 using Subscription.Infra.Data.Contexts;
+using Subscription.Infra.Data.Repositories;
 
 namespace Subscription.Api.Extensions
 {
@@ -15,6 +17,9 @@ namespace Subscription.Api.Extensions
                     //Obter a string de conexão do arquivo de configuração (appsettings.json)
                     configuration.GetConnectionString("DefaultConnection")
                 ));
+
+            //Configurar o UnitofWork
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
 
             return services;
         }

@@ -27,6 +27,19 @@ services:
     volumes:
       - rabbitmq-data:/var/lib/rabbitmq
 
+  subscription-seq:
+    image: datalust/seq:latest
+    container_name: subscription-seq
+    ports:
+       - "5341:80"
+    environment:
+       - ACCEPT_EULA=Y
+       - SEQ_FIRSTRUN_ADMINPASSWORD=Coti@2026
+    networks:
+       - subscription-network
+    volumes:
+       - seq_data:/data
+
 networks:
   subscription-network:
     driver: bridge
@@ -34,3 +47,4 @@ networks:
 volumes:
   sqlserver-data:
   rabbitmq-data:
+  seq_data:
