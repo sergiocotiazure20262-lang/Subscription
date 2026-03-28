@@ -1,5 +1,23 @@
 services:
 
+  subscription-api:
+    container_name: subscription-api
+    build:
+      context: .
+      dockerfile: Subscription.Api/Dockerfile
+    ports:
+      - "5000:8080"
+    depends_on:
+      - subscription-sqlserver
+      - subscription-rabbitmq
+      - subscription-seq
+    environment:
+      - ConnectionStrings__DefaultConnection=Data Source=subscription-sqlserver,1433;Initial Catalog=master;User ID=sa;Password=Coti@2026;Encrypt=False
+      - RabbitMQSettings__Host=subscription-rabbitmq
+      - Seq__Url=http://subscription-seq:80
+    networks:
+      - subscription-network
+
   subscription-sqlserver:
     image: mcr.microsoft.com/mssql/server:2022-latest
     container_name: subscription-sqlserver
@@ -26,6 +44,11 @@ services:
       - subscription-network
     volumes:
       - rabbitmq-data:/var/lib/rabbitmq
+    healthcheck:
+      test: ["CMD", "rabbitmq-diagnostics", "check_port_connectivity"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
 
   subscription-seq:
     image: datalust/seq:latest
@@ -42,7 +65,8 @@ services:
 
 networks:
   subscription-network:
-    driver: bridge
+    external: true
+    name: shared-network
 
 volumes:
   sqlserver-data:
